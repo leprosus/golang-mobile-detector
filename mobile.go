@@ -183,7 +183,7 @@ func initOS() {
 }
 
 func initBrowsers() {
-	if len(browserRegExp) > 0 {
+	if len(browsersRegExp) > 0 {
 		return
 	}
 
