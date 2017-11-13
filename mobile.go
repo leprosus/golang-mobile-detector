@@ -1,15 +1,22 @@
 package golang_mobile_detector
 
-import "regexp"
+import (
+	"regexp"
+	"sync"
+)
 
 var (
 	phonesRegExp   = make(map[string]*regexp.Regexp)
 	tabletsRegExp  = make(map[string]*regexp.Regexp)
 	osRegExp       = make(map[string]*regexp.Regexp)
 	browsersRegExp = make(map[string]*regexp.Regexp)
+	lock           sync.Mutex
 )
 
 func initPhones() {
+	lock.Lock()
+	defer lock.Unlock()
+
 	if len(phonesRegExp) > 0 {
 		return
 	}
@@ -42,6 +49,9 @@ func initPhones() {
 }
 
 func initTablets() {
+	lock.Lock()
+	defer lock.Unlock()
+
 	if len(tabletsRegExp) > 0 {
 		return
 	}
@@ -163,6 +173,9 @@ func initTablets() {
 }
 
 func initOS() {
+	lock.Lock()
+	defer lock.Unlock()
+
 	if len(osRegExp) > 0 {
 		return
 	}
@@ -183,6 +196,9 @@ func initOS() {
 }
 
 func initBrowsers() {
+	lock.Lock()
+	defer lock.Unlock()
+
 	if len(browsersRegExp) > 0 {
 		return
 	}
@@ -211,6 +227,9 @@ func initBrowsers() {
 }
 
 func isMatched(userAgent string, regExp map[string]*regexp.Regexp) bool {
+	lock.Lock()
+	defer lock.Unlock()
+
 	for _, re := range regExp {
 		if re.Match([]byte(userAgent)) {
 			return true

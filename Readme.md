@@ -8,8 +8,6 @@ golang_mobile_detector.IsMobileDevice("Mozilla/5.0 (Macintosh; Intel Mac OS X 10
 
 ## List all functions
 
-
-
 * golang_mobile_detector.IsMobileDevice - defines is device mobile or not
 * golang_mobile_detector.IsPhone - defines is device phone
 * golang_mobile_detector.IsTablet - defines is device tablet
